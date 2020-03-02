@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <script type="text/javascript" src="./core.js"></script>
+        <script>
+            
+            var DataBase = function() {
+
+                this.remember = {};
+            }
+
+            DataBase.prototype.setDataBase = function(dbName,msg) {
+                this.remember[dbName] = msg;
+            }
+            DataBase.prototype.getDataBase = function(dbName) {
+                if (eval("this.remember[\"" + dbName + "\"]") == null) {
+                    return null;
+                } else {
+                    return eval("this.remember[\"" + dbName + "\"]");
+                }
+            }
+            DataBase.prototype.appendDataBase = function(dbName,msg) {
+                if (eval("this.remember[\"" + dbName + "\"]") == null) {
+                    this.remember[dbName] = msg;
+                } else {
+                    this.remember[dbName] = this.remember[dbName] + msg;
+                }
+            }
+            DataBase.prototype.removeDataBase = function(dbName) {
+                this.remember[dbName] = null;
+            }
+
+            var Replier = function() {
+
+            }
+
+            Replier.prototype.reply = function(msg) {
+                console.log(msg);
+            }
+
+            function action() {
+                response(document.getElementById("room").value, document.getElementById("txt").value, "aaaa","",new Replier(),"","","")
+            }
+
+            var Api = function() {
+
+            }
+
+            Api.prototype.papagoTranslate = function(from, to ,msg) {
+                return msg;
+            }
+
+            var DataBase = new DataBase();
+            var Api = new Api();
+        </script>
+    </head>
+
+    <body>
+        <input type="text" id="room" value="room1"/>
+        <input type="text" id="txt"/>
+        <input type="button" value="aa" onclick="action()"/>
+    </body>
+</html>
